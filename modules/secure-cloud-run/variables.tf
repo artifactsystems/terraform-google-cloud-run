@@ -260,3 +260,64 @@ variable "ssl_certificates" {
   }
   description = "A object with a list of domains to auto-generate SSL certificates or a list of SSL Certificates self-links in the pattern `projects/<PROJECT-ID>/global/sslCertificates/<CERT-NAME>` to be used by Load Balancer."
 }
+
+// template spec
+variable "container_concurrency" {
+  description = "Concurrent request limits to the service."
+  type        = number
+  default     = null
+}
+
+variable "timeout_seconds" {
+  description = "Timeout for each request."
+  type        = number
+  default     = 120
+}
+
+# template spec container
+# resources
+# cpu = (core count * 1000)m
+# memory = (size) in Mi/Gi
+variable "limits" {
+  description = "Resource limits to the container."
+  type        = map(string)
+  default     = null
+}
+variable "requests" {
+  description = "Resource requests to the container."
+  type        = map(string)
+  default     = {}
+}
+
+variable "ports" {
+  description = "Port which the container listens to (http1 or h2c)."
+  type = object({
+    name = string
+    port = number
+  })
+  default = {
+    name = "http1"
+    port = 8080
+  }
+}
+
+variable "argument" {
+  description = "Arguments passed to the ENTRYPOINT command, include these only if image entrypoint needs arguments."
+  type        = list(string)
+  default     = []
+}
+
+variable "container_command" {
+  description = "Leave blank to use the ENTRYPOINT command defined in the container image, include these only if image entrypoint should be overwritten."
+  type        = list(string)
+  default     = []
+}
+
+variable "volume_mounts" {
+  type = list(object({
+    mount_path = string
+    name       = string
+  }))
+  description = "[Beta] Volume Mounts to be attached to the container (when using secret)."
+  default     = []
+}

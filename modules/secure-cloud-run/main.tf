@@ -146,6 +146,14 @@ module "cloud_run_core" {
   max_scale_instances         = var.max_scale_instances
   volumes                     = var.volumes
   ssl_certificates            = var.ssl_certificates
+  container_concurrency       = var.container_concurrency
+  timeout_seconds             = var.timeout_seconds
+  limits                      = var.limits
+  requests                    = var.requests
+  ports                       = var.ports
+  argument                    = var.argument
+  container_command           = var.container_command
+  volume_mounts               = var.volume_mounts
 
   depends_on = [
     module.serverless_project_apis,
