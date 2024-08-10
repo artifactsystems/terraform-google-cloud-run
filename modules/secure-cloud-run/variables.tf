@@ -66,6 +66,12 @@ variable "connector_name" {
   default     = "serverless-vpc-connector"
 }
 
+variable "lb_name" {
+  description = "Name for load balancer and associated resources."
+  type        = string
+  default     = "tf-cr-lb"
+}
+
 variable "subnet_name" {
   description = "Subnet name to be re-used to create Serverless Connector."
   type        = string

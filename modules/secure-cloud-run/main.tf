@@ -130,6 +130,7 @@ module "cloud_run_core" {
   service_name                = var.service_name
   location                    = var.location
   project_id                  = var.serverless_project_id
+  lb_name                     = var.lb_name
   image                       = var.image
   cloud_run_sa                = var.cloud_run_sa
   vpc_connector_id            = module.cloud_run_network.connector_id
